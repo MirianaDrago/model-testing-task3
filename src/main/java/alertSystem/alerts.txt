@@ -1,0 +1,14 @@
+States:
+- viewAlerts *(starting state)
+- badState
+- goodState
+
+Variables:
+- alerts (int)
+- valid_properties (bool)
+
+Transitions:
+- viewAlerts -> viewAlerts \ addAlert \ alert++
+- viewAlerts -> viewAlerts \ deleteAlerts \ alerts = 0
+- viewAlerts -> goodState \ checkAlerts \ valid_properties = true
+- viewAlerts -> badState \ checkAlerts \ valid_properties = false

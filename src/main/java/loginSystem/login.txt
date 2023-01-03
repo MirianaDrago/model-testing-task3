@@ -1,0 +1,20 @@
+States:
+- LoggedOut *(starting state)
+- LoggedIn
+- viewAlerts
+
+Variables:
+- loggedIn (bool)
+- inAlertsPage (bool)
+- valid_credentials (bool)
+
+Transitions:
+- LoggedOut -> LoggedOut \ badLogin \ loggedIn = false && valid_credentials = false
+
+- LoggedOut -> LoggedIn \ goodLogin \ loggedIn = true && valid_credentials = true
+
+- LoggedIn -> LoggedOut \ Logout \ loggedIn = false
+- ViewAlerts -> LoggedOut \ Logout \ inAlertsPage = false && loggedIn = false
+
+- LoggedIn -> viewAlerts \ visitAlerts \ loggedIn = true && inAlertsPage = true
+- ViewAlerts -> ViewAlerts \ visitAlerts \ inAlertsPage = true
