@@ -35,4 +35,24 @@ public class alertsModelTest implements FsmModel {
 
         assertEquals(alerts, sut.getNumOfAlerts()); //making sure that there is same amount of alerts
     }
+    public boolean deleteAlertsGuard() { return getState().equals(AlertsEnum.VIEWALERTS);}
+    public @Action void deleteAlerts() {
+        sut.deleteAlerts();
+
+        stateEnum = AlertsEnum.VIEWALERTS;
+        alerts = 0;
+
+        assertEquals(alerts, sut.getNumOfAlerts()); //both should be 0
+    }
+    public boolean checkAlertsGuard() { return getState().equals(AlertsEnum.VIEWALERTS);}
+    public @Action void checkAlerts() {
+        sut.checkAlerts();
+
+        if (valid_properties) {
+            stateEnum = AlertsEnum.GOODSTATE;
+
+        } else {
+            stateEnum = AlertsEnum.BADSTATE;
+        }
+    }
 }
